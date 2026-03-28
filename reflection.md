@@ -8,7 +8,30 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
----
+
+When I first ran the game, it launched in Streamlit and appeared to work 
+on the surface — but several bugs became clear after playing it a couple 
+of times.
+
+**Bug 1: Hints are reversed/lying**
+Expected: If my guess was too low, the hint should say "go higher."
+Actual: The hints pointed me in the wrong direction, guiding me away 
+from the secret number instead of toward it. I never found the number 
+despite following the hints.
+
+**Bug 2: New Game button does nothing**
+Expected: Clicking "New Game" should reset the game and start fresh 
+with a new secret number.
+Actual: Clicking the button had no effect — the game stayed in its 
+current state with no reset.
+
+**Bug 3: Duplicate guesses are silently ignored**
+Expected: If I submit the same number twice, the game should either 
+warn me ("You already guessed that!") or count it as a wasted attempt.
+Actual: The game accepted the duplicate without any message, didn't 
+count it as an attempt, but still registered the value — inconsistent 
+and confusing behavior.
+
 
 ## 2. How did you use AI as a teammate?
 
