@@ -39,7 +39,27 @@ and confusing behavior.
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
----
+I used Claude Code (Anthropic) as my primary AI tool throughout this project. 
+It was accessible directly inside VS Code and could read and edit multiple 
+files at once, similar to Copilot Agent Mode.
+
+**Example of a correct AI suggestion:**
+I asked Claude Code to move the `check_guess` function from `app.py` into 
+`logic_utils.py` and fix the bug where the secret number was being converted 
+to a string on even attempts. Claude Code correctly removed the broken 
+`if st.session_state.attempts % 2 == 0` block, moved the function to 
+`logic_utils.py`, and updated the import in `app.py` automatically. I verified 
+this was correct by running the app and confirming hints were no longer lying, 
+and by running `pytest tests/ -v` which showed 6/6 tests passing.
+
+**Example of an incorrect/misleading AI suggestion:**
+While Claude Code fixed the string conversion bug, it made two mistakes I had 
+to catch myself. First, it kept the hint messages backwards — when a guess was 
+too high it said "Go HIGHER!" instead of "Go LOWER!". Second, the emojis were 
+corrupted during the move, appearing as `ð` instead of 🎉 📈 📉. The AI did 
+not flag either issue. I caught them by carefully reviewing the diff before 
+accepting, and fixed both manually in `logic_utils.py`. This taught me that 
+AI suggestions always need human review — even when the main task looks correct.
 
 ## 3. Debugging and testing your fixes
 
